@@ -18,14 +18,18 @@ import theme from '~/lib/chakra/theme';
 import Layout from './components/Layout';
 
 export function meta() {
-  return { title: 'Primary Focus' };
+  return {
+    title: 'Primary Focus',
+    description:
+      'Educational videos, articles, and resources for parents and teachers of elementary school students',
+  };
 }
 
 export function loader() {
   return {
     ENV: {
       FATHOM_SITE_ID: process.env.FATHOM_SITE_ID,
-      SITE_URL: process.env.SITE_URL || 'localhost:3000',
+      SITE_URL: process.env.SITE_URL || 'http://localhost:3000',
     },
   };
 }
