@@ -5,7 +5,17 @@ import { getClient } from '~/lib/sanity/getClient';
 
 export async function loader() {
   const posts = await getClient().fetch(
-    `*[_type == "post"]{ _id, author, title, slug, mainImage, publishedAt, tags }`,
+    `*[_type == "post"]{
+      _id,
+      excerpt,
+      author,
+      title,
+      slug,
+      mainImage,
+      publishedAt,
+      "tags": tags[]->{title, slug}
+    
+    } | order(publishedAt desc)`,
   );
 
   return { posts };
@@ -13,7 +23,6 @@ export async function loader() {
 
 export default function Index() {
   let { posts } = useLoaderData();
-
   return (
     <Stack spacing={4}>
       <ArticleList articles={posts} />

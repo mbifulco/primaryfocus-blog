@@ -54,10 +54,7 @@ const ArticleListItem = ({
         <Text as="p" fontSize="md" marginTop="2">
           excerpt
         </Text>
-        <BlogAuthor
-          name={author?.name}
-          date={new Date(publishedAt')}
-        />
+        <BlogAuthor name={author?.name} date={new Date(publishedAt)} />
       </Box>
     </WrapItem>
   );
@@ -68,9 +65,16 @@ const BlogTags = (props) => {
     <HStack spacing={2} marginTop={props.marginTop}>
       {props?.tags?.map((tag) => {
         return (
-          <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
+          <Link
+            key={tag?.slug?.current}
+            href={`/tags/${tag?.slug?.current}`}
+            textDecoration="none"
+            _hover={{ textDecoration: 'none' }}
+          >
+            <Tag size={'md'} variant="solid" colorScheme="orange">
+              {tag?.title}
+            </Tag>
+          </Link>
         );
       })}
     </HStack>
@@ -102,6 +106,7 @@ export const BlogAuthor = (props) => {
 
 const ArticleList = ({ articles }) => {
   const [featured, ...rest] = articles;
+
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h1">The latest from Primary Focus</Heading>
@@ -138,8 +143,8 @@ const ArticleList = ({ articles }) => {
           <Box zIndex="1" width="100%" position="absolute" height="100%">
             <Box
               bgGradient={useColorModeValue(
-                'radial(orange.600 1px, transparent 1px)',
-                'radial(orange.300 1px, transparent 1px)',
+                'radial(teal.600 1px, transparent 1px)',
+                'radial(teal.300 1px, transparent 1px)',
               )}
               backgroundSize="20px 20px"
               opacity="0.4"
@@ -154,7 +159,7 @@ const ArticleList = ({ articles }) => {
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}
         >
-          <BlogTags tags={['Engineering', 'Product']} />
+          <BlogTags tags={featured?.tags} />
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               {featured?.title}
@@ -181,9 +186,9 @@ const ArticleList = ({ articles }) => {
       </Heading>
       <Divider marginTop="5" />
       <Wrap spacing="30px" marginTop="5">
-        {rest.map((article) => (
-          <ArticleListItem {...article} />
-        ))}
+        {rest.map((article) => {
+          return <ArticleListItem {...article} key={article?.slug?.current} />;
+        })}
       </Wrap>
     </Container>
   );
