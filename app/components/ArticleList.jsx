@@ -22,7 +22,10 @@ const ArticleListItem = ({
   tags,
 }) => {
   return (
-    <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
+    <WrapItem
+      as="article"
+      width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}
+    >
       <Box w="100%">
         <Box borderRadius="lg" overflow="hidden">
           <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
@@ -42,7 +45,7 @@ const ArticleListItem = ({
           </Link>
         </Box>
         <BlogTags tags={tags} marginTop="3" />
-        <Heading fontSize="xl" marginTop="2">
+        <Heading as="h2" fontSize="xl" marginTop="2">
           <Link
             href={`/articles/${slug}`}
             textDecoration="none"
@@ -109,7 +112,6 @@ const ArticleList = ({ articles }) => {
 
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">The latest from Primary Focus</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -153,6 +155,7 @@ const ArticleList = ({ articles }) => {
           </Box>
         </Box>
         <Box
+          as="article"
           display="flex"
           flex="1"
           flexDirection="column"
@@ -160,8 +163,12 @@ const ArticleList = ({ articles }) => {
           marginTop={{ base: '3', sm: '0' }}
         >
           <BlogTags tags={featured?.tags} />
-          <Heading marginTop="1">
-            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+          <Heading as="h1" marginTop="1">
+            <Link
+              href={`articles/${featured?.slug?.current}`}
+              textDecoration="none"
+              _hover={{ textDecoration: 'none' }}
+            >
               {featured?.title}
             </Link>
           </Heading>
