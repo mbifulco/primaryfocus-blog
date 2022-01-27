@@ -10,6 +10,9 @@ const Footer = () => {
         px={{ base: 4 }}
         direction="column"
       >
+        <Link href="https://youtube.com/c/primaryfocus" isExternal>
+          PrimaryFocus on YouTube
+        </Link>
         <Link href="/contact">Contact</Link>
         <span>&copy; 2022 Primaryfocus</span>
       </Stack>
