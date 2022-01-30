@@ -2,7 +2,7 @@
 
 import PicoSanity from 'picosanity';
 
-import { config } from './config';
+import config from '~/lib/sanity/config';
 
 // Standard client for fetching data
 export const sanityClient = new PicoSanity(config);
@@ -11,7 +11,10 @@ export const sanityClient = new PicoSanity(config);
 export const previewClient = new PicoSanity({
   ...config,
   useCdn: false,
-  token: process.env.SANITY_API_TOKEN ?? '',
+  token:
+    typeof window !== 'undefined'
+      ? window.ENV.SANITY_API_TOKEN
+      : process.env.SANITY_API_TOKEN ?? '',
 });
 
 // Helper function to choose the correct client

@@ -3,6 +3,7 @@ import { useLoaderData } from 'remix';
 
 import BlockContent from '@sanity/block-content-to-react';
 import imageUrlBuilder from '@sanity/image-url';
+import groq from 'groq';
 
 import {
   Box,
@@ -17,7 +18,11 @@ import { formatRelative } from 'date-fns';
 
 import { getClient } from '~/lib/sanity/getClient';
 import { filterDataToSingleItem } from '~/lib/sanity/filterDataToSingleItem';
+
 import Preview from '~/components/Preview';
+import NewsletterCTA from '~/components/NewsletterCTA';
+import { TagList } from '~/components/TagList';
+import BlockContentWrapper from '../../components/BlockContentWrapper';
 
 export const meta = ({ data: loaderData, sanityClient }) => {
   const post = filterDataToSingleItem(loaderData.data, loaderData.preview);
@@ -44,7 +49,18 @@ export async function loader({ params, request }) {
 
   // Query for _all_ documents with this slug
   // There could be two: Draft and Published!
-  const query = `*[_type == "post" && slug.current == $slug]`;
+  const query = groq`
+    *[_type == "post" && slug.current == $slug] {
+      author,
+      body,
+      excerpt,
+      mainImage,
+      publishedAt,
+      slug,
+      title,
+      youTubeId,
+      "tags": tags[]->{title, slug}
+    }`;
   const queryParams = { slug: params.slug };
 
   const sanityClient = getClient(preview);
@@ -108,6 +124,20 @@ export default function Post() {
     );
   }
 
+  let hero;
+  if (youtubeEmbed) {
+    hero = youtubeEmbed;
+  } else if (headerImageUrl) {
+    hero = (
+      <Image
+        src={headerImageUrl.width(1200).height(700).url()}
+        objectFit="cover"
+        alt={post?.mainImage?.alt}
+        maxH={'40vh'}
+      />
+    );
+  }
+
   return (
     <Stack spacing={8}>
       {preview ? (
@@ -131,20 +161,22 @@ export default function Post() {
             Published {formatRelative(new Date(post?.publishedAt), new Date())}
           </Text>
         ) : null}
+        <Stack direction="row" spacing={4}>
+          <TagList tags={post?.tags} />
+        </Stack>
       </Stack>
 
-      {youtubeEmbed ? youtubeEmbed : null}
-      {headerImageUrl ? (
-        <Image
-          src={headerImageUrl.width(1200).height(700).url()}
-          objectFit="cover"
-          alt={post?.mainImage?.alt}
-          maxH={'40vh'}
-        />
-      ) : null}
+      {hero}
 
-      <Stack width="65ch" alignSelf="center" spacing={4} fontSize={'larger'}>
-        {post?.body ? <BlockContent blocks={post.body} /> : null}
+      <Stack
+        maxWidth={['100vw', '65ch']}
+        alignSelf="center"
+        spacing={4}
+        fontSize={'larger'}
+      >
+        <BlockContentWrapper>{post?.body}</BlockContentWrapper>
+
+        <NewsletterCTA />
       </Stack>
     </Stack>
   );

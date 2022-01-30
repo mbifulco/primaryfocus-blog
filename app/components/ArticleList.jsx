@@ -5,106 +5,25 @@ import {
   Image,
   Text,
   Divider,
-  HStack,
-  Tag,
   Wrap,
-  WrapItem,
   useColorModeValue,
   Container,
 } from '@chakra-ui/react';
 
-const ArticleListItem = ({
-  author,
-  publishedAt,
-  title,
-  excerpt,
-  slug,
-  tags,
-}) => {
-  return (
-    <WrapItem
-      as="article"
-      width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}
-    >
-      <Box w="100%">
-        <Box borderRadius="lg" overflow="hidden">
-          <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            <Image
-              transform="scale(1.0)"
-              src={
-                'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-              }
-              alt="some text"
-              objectFit="contain"
-              width="100%"
-              transition="0.3s ease-in-out"
-              _hover={{
-                transform: 'scale(1.05)',
-              }}
-            />
-          </Link>
-        </Box>
-        <BlogTags tags={tags} marginTop="3" />
-        <Heading as="h2" fontSize="xl" marginTop="2">
-          <Link
-            href={`/articles/${slug}`}
-            textDecoration="none"
-            _hover={{ textDecoration: 'none' }}
-          >
-            {title}
-          </Link>
-        </Heading>
-        <Text as="p" fontSize="md" marginTop="2">
-          excerpt
-        </Text>
-        <BlogAuthor name={author?.name} date={new Date(publishedAt)} />
-      </Box>
-    </WrapItem>
-  );
-};
+import imageUrlBuilder from '@sanity/image-url';
+import { getClient } from '~/lib/sanity/getClient';
+import { ArticleListItem } from './ArticleListItem';
+import { AuthorDisplay } from './AuthorDisplay';
+import { TagList } from './TagList';
 
-const BlogTags = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props?.tags?.map((tag) => {
-        return (
-          <Link
-            key={tag?.slug?.current}
-            href={`/tags/${tag?.slug?.current}`}
-            textDecoration="none"
-            _hover={{ textDecoration: 'none' }}
-          >
-            <Tag size={'md'} variant="solid" colorScheme="orange">
-              {tag?.title}
-            </Tag>
-          </Link>
-        );
-      })}
-    </HStack>
-  );
-};
+export const ArticleCoverImage = ({ mainImage, ...rest }) => {
+  const sanityClient = getClient();
+  const urlBuilder = imageUrlBuilder(sanityClient);
+  const headerImageUrl = mainImage ? urlBuilder.image(mainImage).url() : null;
 
-export const BlogAuthor = (props) => {
-  return (
-    <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
-      {props?.image ? (
-        <Image
-          borderRadius="full"
-          boxSize="40px"
-          src="https://100k-faces.glitch.me/random-image"
-          alt={`Avatar of ${props.name}`}
-        />
-      ) : null}
-      {props?.name ? (
-        <>
-          <Text fontWeight="medium">{props?.name}</Text>
-          <Text>—</Text>
-        </>
-      ) : null}
+  // const headerImageUrl = '';
 
-      <Text>{props.date.toLocaleDateString()}</Text>
-    </HStack>
-  );
+  return <Image src={headerImageUrl} {...rest} fallback={Box} />;
 };
 
 const ArticleList = ({ articles }) => {
@@ -132,11 +51,9 @@ const ArticleList = ({ articles }) => {
             marginTop="5%"
           >
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-              <Image
+              <ArticleCoverImage
                 borderRadius="lg"
-                src={
-                  'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                }
+                mainImage={featured?.mainImage}
                 alt="some good alt text"
                 objectFit="contain"
               />
@@ -162,7 +79,7 @@ const ArticleList = ({ articles }) => {
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}
         >
-          <BlogTags tags={featured?.tags} />
+          <TagList tags={featured?.tags} />
           <Heading as="h1" marginTop="1">
             <Link
               href={`articles/${featured?.slug?.current}`}
@@ -181,7 +98,7 @@ const ArticleList = ({ articles }) => {
             {featured?.excerpt}
           </Text>
           {featured?.author ? (
-            <BlogAuthor
+            <AuthorDisplay
               name={featured?.author?.name}
               date={new Date(featured?.publishedAt)}
             />
