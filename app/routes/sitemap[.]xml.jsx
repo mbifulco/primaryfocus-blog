@@ -52,8 +52,6 @@ export async function loader({ params }) {
     } `,
   );
 
-  console.log('tags', tags);
-
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${staticUrls.map((url) => SitemapUrl({ url })).join('\n')}
