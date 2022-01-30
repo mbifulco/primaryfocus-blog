@@ -28,6 +28,7 @@ export function meta() {
 export function loader() {
   return {
     ENV: {
+      SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
       FATHOM_SITE_ID: process.env.FATHOM_SITE_ID,
       SITE_URL: process.env.SITE_URL || 'http://localhost:3000',
     },
@@ -66,6 +67,11 @@ export default function App() {
         <ChakraProvider theme={theme}>
           <Layout>
             <Outlet />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.ENV = ${JSON.stringify(ENV)}`,
+              }}
+            />
             <ScrollRestoration />
             <Scripts />
             {process.env.NODE_ENV === 'development' && <LiveReload />}
