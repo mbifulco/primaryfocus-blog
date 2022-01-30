@@ -7,3 +7,5 @@ export const config = {
   projectId: '2bq3fs36',
   useCdn: false,
 };
+
+export default config;
