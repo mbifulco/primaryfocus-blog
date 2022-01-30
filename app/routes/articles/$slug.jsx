@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLoaderData } from 'remix';
 
-import BlockContent from '@sanity/block-content-to-react';
 import imageUrlBuilder from '@sanity/image-url';
 import groq from 'groq';
 
@@ -67,6 +66,7 @@ export async function loader({ params, request }) {
   const data = await sanityClient.fetch(query, queryParams);
 
   return {
+    canonical: requestUrl.href,
     sanityClient,
     data,
     preview,
@@ -77,6 +77,7 @@ export async function loader({ params, request }) {
 
 export default function Post() {
   let {
+    canonical,
     data: initialData,
     preview,
     query,
@@ -139,45 +140,49 @@ export default function Post() {
   }
 
   return (
-    <Stack spacing={8}>
-      {preview ? (
-        <Preview
-          data={data}
-          setData={setData}
-          query={query}
-          queryParams={queryParams}
-        />
-      ) : null}
-
-      <Stack>
-        {post?.title ? <Heading as="h1">{post.title}</Heading> : null}
-        {post?.publishedAt ? (
-          <Text
-            as="time"
-            dateTime={post.publishedAt}
-            color={useColorModeValue('gray.600', 'gray.300')}
-            fontSize={'sm'}
-          >
-            Published {formatRelative(new Date(post?.publishedAt), new Date())}
-          </Text>
+    <>
+      {canonical ? <link rel="canonical" href={canonical} /> : null}
+      <Stack spacing={8}>
+        {preview ? (
+          <Preview
+            data={data}
+            setData={setData}
+            query={query}
+            queryParams={queryParams}
+          />
         ) : null}
-        <Stack direction="row" spacing={4}>
-          <TagList tags={post?.tags} />
+
+        <Stack>
+          {post?.title ? <Heading as="h1">{post.title}</Heading> : null}
+          {post?.publishedAt ? (
+            <Text
+              as="time"
+              dateTime={post.publishedAt}
+              color={useColorModeValue('gray.600', 'gray.300')}
+              fontSize={'sm'}
+            >
+              Published{' '}
+              {formatRelative(new Date(post?.publishedAt), new Date())}
+            </Text>
+          ) : null}
+          <Stack direction="row" spacing={4}>
+            <TagList tags={post?.tags} />
+          </Stack>
+        </Stack>
+
+        {hero}
+
+        <Stack
+          maxWidth={['100vw', '65ch']}
+          alignSelf="center"
+          spacing={4}
+          fontSize={'larger'}
+        >
+          <BlockContentWrapper>{post?.body}</BlockContentWrapper>
+
+          <NewsletterCTA />
         </Stack>
       </Stack>
-
-      {hero}
-
-      <Stack
-        maxWidth={['100vw', '65ch']}
-        alignSelf="center"
-        spacing={4}
-        fontSize={'larger'}
-      >
-        <BlockContentWrapper>{post?.body}</BlockContentWrapper>
-
-        <NewsletterCTA />
-      </Stack>
-    </Stack>
+    </>
   );
 }
