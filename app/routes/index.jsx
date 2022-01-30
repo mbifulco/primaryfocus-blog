@@ -21,16 +21,6 @@ export async function loader() {
   return { posts };
 }
 
-export function links() {
-  const { ENV } = useLoaderData();
-  return [
-    {
-      rel: 'canonical',
-      href: ENV.SITE_URL,
-    },
-  ];
-}
-
 export default function Index() {
   let { posts } = useLoaderData();
   return (
