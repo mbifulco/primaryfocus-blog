@@ -1,7 +1,7 @@
 import { Box, Heading, Link, Text, WrapItem } from '@chakra-ui/react';
 import { AuthorDisplay } from './AuthorDisplay';
 import { TagList } from './TagList';
-import { ArticleCoverImage } from './ArticleList';
+import { ArticleCoverImage } from './ArticleCoverImage';
 
 export const ArticleListItem = ({
   author,
@@ -10,8 +10,10 @@ export const ArticleListItem = ({
   publishedAt,
   tags,
   title,
+  youTubeId,
   slug,
 }) => {
+  const articleUrl = `/articles/${slug?.current}`;
   return (
     <WrapItem
       as="article"
@@ -19,8 +21,14 @@ export const ArticleListItem = ({
     >
       <Box w="100%">
         <Box borderRadius="lg" overflow="hidden">
-          <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+          <Link
+            href={articleUrl}
+            textDecoration="none"
+            _hover={{ textDecoration: 'none' }}
+          >
             <ArticleCoverImage
+              youTubeId={youTubeId}
+              title={title}
               mainImage={mainImage}
               transform="scale(1.0)"
               alt="some text"
@@ -33,20 +41,19 @@ export const ArticleListItem = ({
             />
           </Link>
         </Box>
-        <TagList tags={tags} marginTop="3" />
-        <Heading as="h2" fontSize="xl" marginTop="2">
+        <Heading as="h2" fontSize="xl">
           <Link
-            href={`/articles/${slug}`}
+            href={articleUrl}
             textDecoration="none"
             _hover={{ textDecoration: 'none' }}
           >
             {title}
           </Link>
         </Heading>
+        <TagList tags={tags} marginTop="2" />
         <Text as="p" fontSize="md" marginTop="2">
           {excerpt ? excerpt : null}
         </Text>
-        <AuthorDisplay name={author?.name} date={new Date(publishedAt)} />
       </Box>
     </WrapItem>
   );

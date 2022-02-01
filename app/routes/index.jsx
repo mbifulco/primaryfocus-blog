@@ -13,6 +13,7 @@ export async function loader() {
       slug,
       mainImage,
       publishedAt,
+      youTubeId,
       "tags": tags[]->{title, slug}
     
     } | order(publishedAt desc)`,

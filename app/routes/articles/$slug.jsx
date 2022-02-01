@@ -8,6 +8,7 @@ import {
   Box,
   Heading,
   Image,
+  Link,
   Stack,
   Text,
   useColorModeValue,

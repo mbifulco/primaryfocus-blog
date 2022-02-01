@@ -2,7 +2,6 @@ import {
   Box,
   Heading,
   Link,
-  Image,
   Text,
   Divider,
   Wrap,
@@ -10,24 +9,15 @@ import {
   Container,
 } from '@chakra-ui/react';
 
-import imageUrlBuilder from '@sanity/image-url';
-import { getClient } from '~/lib/sanity/getClient';
+import { ArticleCoverImage } from './ArticleCoverImage';
 import { ArticleListItem } from './ArticleListItem';
 import { AuthorDisplay } from './AuthorDisplay';
 import { TagList } from './TagList';
 
-export const ArticleCoverImage = ({ mainImage, ...rest }) => {
-  const sanityClient = getClient();
-  const urlBuilder = imageUrlBuilder(sanityClient);
-  const headerImageUrl = mainImage ? urlBuilder.image(mainImage).url() : null;
-
-  // const headerImageUrl = '';
-
-  return <Image src={headerImageUrl} {...rest} fallback={Box} />;
-};
-
 const ArticleList = ({ articles }) => {
   const [featured, ...rest] = articles;
+
+  console.log(featured);
 
   return (
     <Container maxW={'7xl'} p="12">
@@ -53,7 +43,7 @@ const ArticleList = ({ articles }) => {
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <ArticleCoverImage
                 borderRadius="lg"
-                mainImage={featured?.mainImage}
+                {...featured}
                 alt="some good alt text"
                 objectFit="contain"
               />

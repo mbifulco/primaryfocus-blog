@@ -1,6 +1,6 @@
 import BlockContent from '@sanity/block-content-to-react';
 
-import { Heading, List, ListItem, Stack, Text } from '@chakra-ui/react';
+import { Heading, List, Link, ListItem, Text } from '@chakra-ui/react';
 
 import SanityImageDisplay from '~/components/SanityImageDisplay';
 import { config } from '~/lib/sanity/config';
@@ -79,7 +79,14 @@ const serializers = {
     code: (props) => <Text as="code">{props.children}</Text>,
     underline: (props) => <Text as="u">{props.children}</Text>,
     'strike-through': (props) => <Text as="s">{props.children}</Text>,
-    link: (props) => <Link href={props.node.url}>{props.children}</Link>,
+    link: (props) => {
+      console.log('link props', props);
+      return (
+        <Link href={props?.mark?.href || props.children[0]} color={'teal.500'}>
+          {props.children}
+        </Link>
+      );
+    },
   },
 };
 
