@@ -2,6 +2,7 @@ import { Stack } from '@chakra-ui/react';
 import { Link, useLoaderData } from 'remix';
 import ArticleList from '~/components/ArticleList';
 import { getClient } from '~/lib/sanity/getClient';
+import config from '~/config';
 
 export async function loader() {
   const posts = await getClient().fetch(
@@ -20,6 +21,12 @@ export async function loader() {
   );
 
   return { posts };
+}
+
+export function meta() {
+  return {
+    canonical: config.siteUrl,
+  };
 }
 
 export default function Index() {

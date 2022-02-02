@@ -79,14 +79,11 @@ const serializers = {
     code: (props) => <Text as="code">{props.children}</Text>,
     underline: (props) => <Text as="u">{props.children}</Text>,
     'strike-through': (props) => <Text as="s">{props.children}</Text>,
-    link: (props) => {
-      console.log('link props', props);
-      return (
-        <Link href={props?.mark?.href || props.children[0]} color={'teal.500'}>
-          {props.children}
-        </Link>
-      );
-    },
+    link: (props) => (
+      <Link href={props?.mark?.href || props.children[0]} color={'teal.500'}>
+        {props.children}
+      </Link>
+    ),
   },
 };
 

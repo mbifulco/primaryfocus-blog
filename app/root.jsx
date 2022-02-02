@@ -17,11 +17,20 @@ import { useLocation } from 'react-router-dom';
 import theme from '~/lib/chakra/theme';
 import Layout from './components/Layout';
 
+import config from '~/config';
+
+// populate OG metadata like title, description, etc
 export function meta() {
+  const { meta } = config;
   return {
-    title: 'Primary Focus',
-    description:
-      'Educational videos, articles, and resources for parents and teachers of elementary school students',
+    title: meta.title,
+    description: meta.description,
+    'og:title': meta.title,
+    'og:description': meta.description,
+    'og:image': meta.ogImage,
+    creator: meta.creator,
+    'og:creator': meta.creator,
+    keywords: meta.keywords,
   };
 }
 

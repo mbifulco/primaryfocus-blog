@@ -17,8 +17,6 @@ import { TagList } from './TagList';
 const ArticleList = ({ articles }) => {
   const [featured, ...rest] = articles;
 
-  console.log(featured);
-
   return (
     <Container maxW={'7xl'} p="12">
       <Box

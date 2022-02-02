@@ -19,6 +19,8 @@ import { formatRelative } from 'date-fns';
 import { getClient } from '~/lib/sanity/getClient';
 import { filterDataToSingleItem } from '~/lib/sanity/filterDataToSingleItem';
 
+import config from '~/config';
+
 import Preview from '~/components/Preview';
 import NewsletterCTA from '~/components/NewsletterCTA';
 import { TagList } from '~/components/TagList';
@@ -35,9 +37,15 @@ export const meta = ({ data: loaderData, sanityClient }) => {
   return {
     description: post?.description,
     keywords: post?.keywords,
-    title: post?.title,
-    ogImage: headerImageUrl?.width(1200).height(600).url(),
-    ogType: 'article',
+    title: post?.title
+      ? `${post.title} - ${config.meta.title}`
+      : config.meta.title,
+    'og:image': headerImageUrl?.width(1200).height(600).url(),
+    'og:type': 'article',
+    'og:title': post?.title,
+    'og:description': post?.description,
+    'og:url': `${config.siteUrl}/articles/${post.slug.current}`,
+    'twitter:card': 'summary_large_image',
   };
 };
 
@@ -175,10 +183,14 @@ export default function Post() {
 
         <Stack
           maxWidth={['100vw', '65ch']}
+          width="65ch"
           alignSelf="center"
           spacing={4}
           fontSize={'larger'}
         >
+          <Heading as="h2" size="lg">
+            Summary
+          </Heading>
           <BlockContentWrapper>{post?.body}</BlockContentWrapper>
 
           <NewsletterCTA />
