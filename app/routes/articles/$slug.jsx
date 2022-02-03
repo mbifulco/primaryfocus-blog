@@ -18,6 +18,7 @@ import { formatRelative } from 'date-fns';
 
 import { getClient } from '~/lib/sanity/getClient';
 import { filterDataToSingleItem } from '~/lib/sanity/filterDataToSingleItem';
+import { getYouTubeThumbnailUrlForId } from '~/lib/util/getYouTubeThumbnailUrlForId';
 
 import config from '~/config';
 
@@ -30,9 +31,10 @@ export const meta = ({ data: loaderData, sanityClient }) => {
   const post = filterDataToSingleItem(loaderData.data, loaderData.preview);
 
   const urlBuilder = imageUrlBuilder(sanityClient);
+  console.log(post);
   const headerImageUrl = post?.mainImage
-    ? urlBuilder.image(post?.mainImage)
-    : null;
+    ? urlBuilder.image(post?.mainImage).width(1200).height(600).url()
+    : getYouTubeThumbnailUrlForId(post?.youTubeId);
 
   return {
     description: post?.description,
@@ -40,7 +42,7 @@ export const meta = ({ data: loaderData, sanityClient }) => {
     title: post?.title
       ? `${post.title} - ${config.meta.title}`
       : config.meta.title,
-    'og:image': headerImageUrl?.width(1200).height(600).url(),
+    'og:image': headerImageUrl,
     'og:type': 'article',
     'og:title': post?.title,
     'og:description': post?.description,
