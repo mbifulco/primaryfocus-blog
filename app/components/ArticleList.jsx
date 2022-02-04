@@ -6,7 +6,7 @@ import {
   Divider,
   Wrap,
   useColorModeValue,
-  Container,
+  Stack,
 } from '@chakra-ui/react';
 
 import { ArticleCoverImage } from './ArticleCoverImage';
@@ -18,9 +18,10 @@ const ArticleList = ({ articles }) => {
   const [featured, ...rest] = articles;
 
   return (
-    <>
+    <Stack spacing={6}>
       <Box
         marginTop={{ base: '1', sm: '5' }}
+        marginBottom={{ base: '1', sm: '5' }}
         display="flex"
         flexDirection={{ base: 'column', sm: 'row' }}
         justifyContent="space-between"
@@ -108,7 +109,7 @@ const ArticleList = ({ articles }) => {
           </Wrap>
         </>
       )}
-    </>
+    </Stack>
   );
 };
 

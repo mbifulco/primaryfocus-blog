@@ -254,10 +254,10 @@ const NAV_ITEMS = [
   },
   {
     label: 'Articles',
-    href: '#',
+    href: '/',
   },
   {
     label: 'Contact',
-    href: '#',
+    href: '/contact',
   },
 ];

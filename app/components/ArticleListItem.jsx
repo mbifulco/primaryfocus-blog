@@ -41,7 +41,7 @@ export const ArticleListItem = ({
             />
           </Link>
         </Box>
-        <Heading as="h2" fontSize="xl">
+        <Heading as="h2" fontSize="xl" mt="4">
           <Link
             href={articleUrl}
             textDecoration="none"
