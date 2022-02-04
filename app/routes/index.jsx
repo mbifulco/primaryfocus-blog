@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import { Link, useLoaderData } from 'remix';
+import { useLoaderData } from 'remix';
 import ArticleList from '~/components/ArticleList';
 import { getClient } from '~/lib/sanity/getClient';
 import config from '~/config';

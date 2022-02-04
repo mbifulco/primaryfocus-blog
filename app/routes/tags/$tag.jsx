@@ -1,10 +1,11 @@
 import { useLoaderData } from 'remix';
 import groq from 'groq';
 
-import { Heading } from '@chakra-ui/react';
+import { Heading, Stack } from '@chakra-ui/react';
 
 import { getClient } from '~/lib/sanity/getClient';
-import config from '~/config';
+import ArticleList from '~/components/ArticleList';
+import NewsletterCTA from '~/components/NewsletterCTA';
 
 export async function loader({ params, request }) {
   const requestUrl = new URL(request?.url);
@@ -15,7 +16,7 @@ export async function loader({ params, request }) {
   // Query for _all_ documents with this slug
   // There could be two: Draft and Published!
   const query = groq`
-    *[_type == "post" && $tag in tags] {
+    *[_type == "post" && $tag in tags[]->slug.current] {
       author,
       body,
       excerpt,
@@ -26,6 +27,7 @@ export async function loader({ params, request }) {
       youTubeId,
       "tags": tags[]->{title, slug}
     }`;
+
   const queryParams = { tag: params.tag };
 
   const sanityClient = getClient(preview);
@@ -38,18 +40,24 @@ export async function loader({ params, request }) {
     preview,
     query: preview ? query : null,
     queryParams: preview ? queryParams : null,
+    tag: params.tag,
   };
 }
 
 const PageForTag = () => {
-  const { data, preview, query, queryParams } = useLoaderData();
+  const ld = useLoaderData();
+  const { data, preview, query, queryParams, tag } = useLoaderData();
 
   return (
-    <>
-      <Heading as="h1">
-        {data?.posts?.length} Articles and videos tagged with {queryParams?.tag}
+    <Stack spacing={8}>
+      <Heading as="div">
+        {data?.length === 1
+          ? `Articles tagged with ${tag}`
+          : `${data.length} Articles and videos tagged with ${tag}`}
       </Heading>
-    </>
+      <ArticleList articles={data} />
+      <NewsletterCTA />
+    </Stack>
   );
 };
 

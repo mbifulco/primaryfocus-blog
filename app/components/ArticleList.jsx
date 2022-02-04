@@ -18,7 +18,7 @@ const ArticleList = ({ articles }) => {
   const [featured, ...rest] = articles;
 
   return (
-    <Container maxW={'7xl'} p="12">
+    <>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -36,7 +36,7 @@ const ArticleList = ({ articles }) => {
             width={{ base: '100%', sm: '85%' }}
             zIndex="2"
             marginLeft={{ base: '0', sm: '5%' }}
-            marginTop="5%"
+            marginTop="2%"
           >
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <ArticleCoverImage
@@ -47,11 +47,11 @@ const ArticleList = ({ articles }) => {
               />
             </Link>
           </Box>
-          <Box zIndex="1" width="100%" position="absolute" height="100%">
+          <Box zIndex="1" width="97%" position="absolute" height="118%">
             <Box
               bgGradient={useColorModeValue(
-                'radial(teal.600 1px, transparent 1px)',
-                'radial(teal.300 1px, transparent 1px)',
+                'radial(pink.600 3px, transparent 3px)',
+                'radial(pink.300 3px, transparent 3px)',
               )}
               backgroundSize="20px 20px"
               opacity="0.4"
@@ -93,16 +93,22 @@ const ArticleList = ({ articles }) => {
           ) : null}
         </Box>
       </Box>
-      <Heading as="h2" marginTop="5">
-        Latest articles
-      </Heading>
-      <Divider marginTop="5" />
-      <Wrap spacing="30px" marginTop="5">
-        {rest.map((article) => {
-          return <ArticleListItem {...article} key={article?.slug?.current} />;
-        })}
-      </Wrap>
-    </Container>
+      {rest.length > 0 && (
+        <>
+          <Heading as="h2" marginTop="5">
+            Latest articles
+          </Heading>
+          <Divider marginTop="5" />
+          <Wrap spacing="30px" marginTop="5">
+            {rest.map((article) => {
+              return (
+                <ArticleListItem {...article} key={article?.slug?.current} />
+              );
+            })}
+          </Wrap>
+        </>
+      )}
+    </>
   );
 };
 
