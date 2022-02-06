@@ -4,12 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]
-    },
-    "exclude": [
-      "node_modules",
-      "**/node_modules/*",
-      ".cache",
-      "public/build/**"
-    ]
-  }
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*", ".cache", "public/build/**"]
 }
