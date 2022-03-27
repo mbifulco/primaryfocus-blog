@@ -54,7 +54,8 @@ export default function App() {
     function setupFathom() {
       if (!fathomLoaded.current) {
         Fathom.load(ENV.FATHOM_SITE_ID, {
-          includedDomains: [ENV.SITE_URL],
+          includedDomains: ['primaryfocus.tv'],
+          url: 'https://meaningful-reliable.primaryfocus.tv',
         });
         fathomLoaded.current = true;
       } else {
