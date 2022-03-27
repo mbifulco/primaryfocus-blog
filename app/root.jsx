@@ -58,9 +58,8 @@ export default function App() {
           url: 'https://meaningful-reliable.primaryfocus.tv',
         });
         fathomLoaded.current = true;
-      } else {
-        Fathom.trackPageview();
       }
+      Fathom.trackPageview();
     },
     [location],
   );
