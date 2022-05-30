@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLoaderData } from 'remix';
+import { useLoaderData } from '@remix-run/react';
 
 import imageUrlBuilder from '@sanity/image-url';
 import groq from 'groq';

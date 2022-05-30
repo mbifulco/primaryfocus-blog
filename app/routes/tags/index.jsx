@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react';
-import { useLoaderData } from 'remix';
+import { useLoaderData } from '@remix-run/react';
 import { getClient } from '~/lib/sanity/getClient';
 import groq from 'groq';
 

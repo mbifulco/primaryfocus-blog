@@ -1,4 +1,4 @@
-import { useLoaderData } from 'remix';
+import { useLoaderData } from '@remix-run/react';
 import groq from 'groq';
 
 import { Heading, Stack } from '@chakra-ui/react';

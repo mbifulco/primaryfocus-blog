@@ -7,12 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from 'remix';
+} from '@remix-run/react';
 
 import { ChakraProvider } from '@chakra-ui/react';
-
-import * as Fathom from 'fathom-client';
-import { useLocation } from 'react-router-dom';
 
 import theme from '~/lib/chakra/theme';
 import Layout from './components/Layout';
@@ -38,7 +35,6 @@ export function loader() {
   return {
     ENV: {
       SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
-      FATHOM_SITE_ID: process.env.FATHOM_SITE_ID,
       SITE_URL: process.env.SITE_URL || 'http://localhost:3000',
     },
   };
@@ -47,23 +43,6 @@ export function loader() {
 export default function App() {
   const { ENV } = useLoaderData();
 
-  let fathomLoaded = useRef(false);
-  let location = useLocation();
-
-  useEffect(
-    function setupFathom() {
-      if (!fathomLoaded.current) {
-        Fathom.load(ENV.FATHOM_SITE_ID, {
-          includedDomains: ['primaryfocus.tv'],
-          url: 'https://meaningful-reliable.primaryfocus.tv/script.js',
-        });
-        fathomLoaded.current = true;
-      }
-      Fathom.trackPageview();
-    },
-    [location],
-  );
-
   return (
     <html lang="en">
       <head>
@@ -71,16 +50,21 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(ENV)}`,
+          }}
+        />
+        <script
+          src="https://meaningful-reliable.primaryfocus.tv/script.js"
+          data-site="XRNNFGQG"
+          defer
+        />
       </head>
       <body>
         <ChakraProvider theme={theme}>
           <Layout>
             <Outlet />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.ENV = ${JSON.stringify(ENV)}`,
-              }}
-            />
             <ScrollRestoration />
             <Scripts />
             {process.env.NODE_ENV === 'development' && <LiveReload />}
