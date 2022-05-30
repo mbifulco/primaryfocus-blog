@@ -31,7 +31,6 @@ export const meta = ({ data: loaderData, sanityClient }) => {
   const post = filterDataToSingleItem(loaderData.data, loaderData.preview);
 
   const urlBuilder = imageUrlBuilder(sanityClient);
-  console.log(post);
   const headerImageUrl = post?.mainImage
     ? urlBuilder.image(post?.mainImage).width(1200).height(600).url()
     : getYouTubeThumbnailUrlForId(post?.youTubeId);
