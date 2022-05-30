@@ -37,7 +37,7 @@ export const meta = ({ data: loaderData, sanityClient }) => {
     : getYouTubeThumbnailUrlForId(post?.youTubeId);
 
   return {
-    description: post?.description,
+    description: post?.description || post?.excerpt,
     keywords: post?.keywords,
     title: post?.title
       ? `${post.title} - ${config.meta.title}`
@@ -45,7 +45,7 @@ export const meta = ({ data: loaderData, sanityClient }) => {
     'og:image': headerImageUrl,
     'og:type': 'article',
     'og:title': post?.title,
-    'og:description': post?.description,
+    'og:description': post?.description || post?.excerpt,
     'og:url': `${config.siteUrl}/articles/${post.slug.current}`,
     'twitter:card': 'summary_large_image',
   };
