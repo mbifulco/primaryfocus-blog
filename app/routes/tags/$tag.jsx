@@ -56,7 +56,7 @@ const PageForTag = () => {
           : `${data.length} Articles and videos tagged with ${tag}`}
       </Heading>
       <ArticleList articles={data} />
-      <NewsletterCTA />
+      {/* <NewsletterCTA /> */}
     </Stack>
   );
 };

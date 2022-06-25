@@ -43,6 +43,35 @@ export function loader() {
 export default function App() {
   const { ENV } = useLoaderData();
 
+  const configurePolitePop = () => {
+    PolitePop({
+      styles: {
+        popTextColor: `#fff`,
+        popBackgroundColor: `rgb(62, 72, 181)`,
+        popYesButtonTextColor: `#fff`,
+        popYesButtonHoverTextColor: `#fff`,
+        popYesButtonBackgroundColor: `#D53F8C`,
+        popYesButtonHoverBackgroundColor: `#e55F8C`,
+        modalBorder: `0px solid #BFD0FF`,
+        modalRoundedCorners: `3px`,
+      },
+      politePopHtml: `<p>I publish a bi-weekly newsletter to stay up to date on my new videos, worksheets, and teaching tips.</p><p>Want to check it out?</p><p><br></p>`,
+      politePopYesText: `Sure!`,
+      exitIntentPopHtml: `<p>Interested in my newsletter for parents and teachers?</p>`,
+      modalHtml: `<h1>Subscribe to my newsletter!</h1><p>Sign up for my newsletter to stay up to date on my new videos, worksheets, teaching tips, and more! </p><p>No spam, unsubscribe any time.</p>`,
+      signupFormAction: `https://app.convertkit.com/forms/3332801/subscriptions`,
+    });
+  };
+
+  useEffect(() => {
+    const check = setInterval(() => {
+      if (typeof PolitePop !== 'undefined') {
+        clearInterval(check);
+        configurePolitePop();
+      }
+    }, 250);
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -66,6 +95,7 @@ export default function App() {
           <Layout>
             <Outlet />
             <ScrollRestoration />
+            <script src="https://cdn.politepop.com/polite-pop-v1.4.17/polite-pop.min.js" />
             <Scripts />
             {process.env.NODE_ENV === 'development' && <LiveReload />}
           </Layout>

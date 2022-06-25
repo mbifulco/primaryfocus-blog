@@ -58,7 +58,7 @@ const Footer = () => {
             </Link>
             <Link href={'/'}>Articles</Link>
             <Link href={'/tags'}>Categories</Link>
-            <Link href={'/contact'}>Contact Us</Link>
+            <Link href={'/contact'}>Contact</Link>
           </Stack>
 
           <Stack align={'flex-start'}>

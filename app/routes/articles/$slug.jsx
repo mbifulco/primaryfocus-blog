@@ -194,7 +194,7 @@ export default function Post() {
           </Heading>
           <BlockContentWrapper>{post?.body}</BlockContentWrapper>
 
-          <NewsletterCTA />
+          {/* <NewsletterCTA /> */}
         </Stack>
       </Stack>
     </>
