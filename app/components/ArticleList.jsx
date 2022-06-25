@@ -71,7 +71,7 @@ const ArticleList = ({ articles }) => {
           <TagList tags={featured?.tags} />
           <Heading as="h1" marginTop="1">
             <Link
-              href={`articles/${featured?.slug?.current}`}
+              href={`/articles/${featured?.slug?.current}`}
               textDecoration="none"
               _hover={{ textDecoration: 'none' }}
             >
