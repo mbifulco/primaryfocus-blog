@@ -20,5 +20,9 @@ export const ArticleCoverImage = ({ mainImage, youTubeId, title, ...rest }) => {
     );
   }
 
-  return <Image src={headerImageUrl} {...rest} fallback={Box} />;
+  if (headerImageUrl) {
+    return <Image src={headerImageUrl} {...rest} fallback={Box} />;
+  }
+
+  return <Box height={200} />;
 };
