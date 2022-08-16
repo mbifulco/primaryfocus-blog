@@ -1,8 +1,6 @@
 import { useLoaderData } from '@remix-run/react';
 import { getClient } from '~/lib/sanity/getClient';
 
-import BlockContentWrapper from '~/components/BlockContentWrapper';
-
 import groq from 'groq';
 import {
   Heading,
@@ -14,6 +12,9 @@ import {
   useTheme,
 } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
+
+import BlockContentWrapper from '~/components/BlockContentWrapper';
+import NewsletterCTA from '~/components/NewsletterCTA';
 
 export const loader = async ({ params, request }) => {
   const requestUrl = new URL(request?.url);
@@ -48,6 +49,7 @@ const ContactPage = () => {
       <Stack spacing={4}>
         <BlockContentWrapper>{bio}</BlockContentWrapper>
       </Stack>
+      <NewsletterCTA />
     </Stack>
   );
 };

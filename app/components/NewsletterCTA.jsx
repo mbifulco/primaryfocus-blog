@@ -38,7 +38,7 @@ const NewsletterCTA = () => {
         fontSize={{ base: 'xl', sm: '2xl' }}
         mb={5}
       >
-        Get updates from me in you inbox
+        Get updates from me in your inbox
       </Heading>
       <Stack
         direction={{ base: 'column', md: 'row' }}
