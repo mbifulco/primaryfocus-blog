@@ -256,4 +256,8 @@ const NAV_ITEMS = [
     label: 'About',
     href: '/contact',
   },
+  {
+    label: 'Newsletter',
+    href: 'https://newsletter.primaryfocus.tv',
+  },
 ];

@@ -1,3 +1,9 @@
+import { useLoaderData } from '@remix-run/react';
+import { getClient } from '~/lib/sanity/getClient';
+
+import BlockContentWrapper from '~/components/BlockContentWrapper';
+
+import groq from 'groq';
 import {
   Heading,
   Image,
@@ -9,9 +15,28 @@ import {
 } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 
+export const loader = async ({ params, request }) => {
+  const requestUrl = new URL(request?.url);
+  //TODO: update this to load expected preview value from process.env.SANITY_PREVIEW_SECRET
+  const preview = requestUrl?.searchParams?.get('preview') == 'preview';
+
+  const query = groq`
+    *[_type == "author" && slug.current == 'miss-natalie'] {
+      bio
+    }`;
+
+  const sanityClient = getClient(preview);
+  const [data] = await sanityClient.fetch(query);
+
+  console.log('bio', data.bio);
+  return { bio: data.bio };
+};
+
 const ContactPage = () => {
   const theme = useTheme();
   const pictureSize = 250;
+
+  const { bio } = useLoaderData();
   return (
     <Stack direction={['column', 'column', 'row']} spacing={12}>
       <Image
@@ -21,44 +46,7 @@ const ContactPage = () => {
         alt="Miss Natalie headshot"
       />
       <Stack spacing={4}>
-        <Heading as="h1">Interested in working together? Get in touch!</Heading>
-        <Text>A few easy options:</Text>
-        <UnorderedList listStylePosition={'inside'}>
-          <ListItem>
-            DM me on Instagram (
-            <a
-              style={{ color: theme.colors.pink[500] }}
-              target={'_blank'}
-              rel="noopener noreferrer"
-              href="https://www.instagram.com/primaryfocus_/"
-            >
-              @primaryfocus_
-            </a>
-            )
-          </ListItem>
-          <ListItem>
-            DM me on Twitter (
-            <a
-              style={{ color: theme.colors.pink[500] }}
-              target={'_blank'}
-              rel="noopener noreferrer"
-              href="https://twitter.com/PrimaryFocus_"
-            >
-              @PrimaryFocus_
-            </a>
-            )
-          </ListItem>
-          <ListItem>
-            Send me an email:{' '}
-            <a
-              style={{ color: theme.colors.pink[500] }}
-              href="mailto:hello@primaryfocus.tv"
-            >
-              hello@primaryfocus.tv
-            </a>
-          </ListItem>
-        </UnorderedList>
-        <Text>Thanks so much! Looking forward to hearing from you.</Text>
+        <BlockContentWrapper>{bio}</BlockContentWrapper>
       </Stack>
     </Stack>
   );
