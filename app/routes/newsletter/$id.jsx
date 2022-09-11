@@ -9,7 +9,7 @@ import NewsletterCTA from '../../components/NewsletterCTA';
 
 import config from '~/config';
 
-import newsletterStylesheetUrl from './newsletter.css';
+import newsletterStylesheetUrl from '~/styles/newsletter.css';
 
 export const links = () => {
   return [{ rel: 'stylesheet', href: newsletterStylesheetUrl }];

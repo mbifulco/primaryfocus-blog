@@ -1,6 +1,8 @@
 import { useLoaderData } from '@remix-run/react';
 import { Heading, Stack } from '@chakra-ui/react';
-import NewsletterListItem from '../../components/NewsletterListItem';
+
+import NewsletterListItem from '~/components/NewsletterListItem';
+import NewsletterCTA from '~/components/NewsletterCTA';
 
 export const loader = async ({ params, request }) => {
   const CONVERTKIT_API_SECRET = process.env.CONVERTKIT_API_SECRET;
@@ -43,6 +45,7 @@ const NewsletterListPage = () => {
           .map((newsletter) => (
             <NewsletterListItem newsletter={newsletter} key={newsletter.id} />
           ))}
+        <NewsletterCTA />
       </Stack>
     </>
   );
