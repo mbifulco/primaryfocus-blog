@@ -82,7 +82,7 @@ const NewsletterCTA = () => {
         </FormControl>
         <FormControl w={{ base: '100%', md: '40%' }}>
           <Button
-            colorScheme={state === 'success' ? 'green' : 'purple'}
+            colorScheme={state === 'success' ? 'green' : 'pink'}
             isLoading={state === 'submitting'}
             w="100%"
             type={state === 'success' ? 'button' : 'submit'}

@@ -258,6 +258,6 @@ const NAV_ITEMS = [
   },
   {
     label: 'Newsletter',
-    href: 'https://newsletter.primaryfocus.tv',
+    href: '/newsletter',
   },
 ];

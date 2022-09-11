@@ -29,7 +29,6 @@ export const loader = async ({ params, request }) => {
   const sanityClient = getClient(preview);
   const [data] = await sanityClient.fetch(query);
 
-  console.log('bio', data.bio);
   return { bio: data.bio };
 };
 
