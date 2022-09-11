@@ -1,8 +1,8 @@
-import { Link, HStack, Tag } from '@chakra-ui/react';
+import { Link, HStack, Tag, SimpleGrid, Box } from '@chakra-ui/react';
 
 export const TagList = ({ tags }) => {
   return (
-    <HStack spacing={2}>
+    <Box spacing={2} lineHeight="2rem">
       {tags?.map((tag) => {
         if (!tag?.title) return null;
         if (!tag?.slug?.current) return null;
@@ -13,13 +13,14 @@ export const TagList = ({ tags }) => {
             href={`/tags/${tag?.slug?.current}`}
             textDecoration="none"
             _hover={{ textDecoration: 'none' }}
+            mr="1ch"
           >
-            <Tag size={'md'} variant="solid" colorScheme="orange">
+            <Tag as="div" size={'md'} variant="solid" colorScheme="pink">
               {tag?.title}
             </Tag>
           </Link>
         );
       })}
-    </HStack>
+    </Box>
   );
 };

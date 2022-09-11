@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 
 import config from '~/config';
 import { getClient } from '~/lib/sanity/getClient';
+import { getAllNewsletters } from '../lib/util/convertKit.server';
 
 export const fullUrl = (url) => {
   if (url.startsWith('http')) {
@@ -37,6 +38,8 @@ export const SitemapUrl = ({
 export async function loader({ params }) {
   const staticUrls = ['/', '/about', '/contact', '/articles', '/tags'];
 
+  const newsletters = await getAllNewsletters();
+
   const posts = await getClient().fetch(
     `*[_type == "post"]{
       slug,
@@ -61,7 +64,9 @@ export async function loader({ params }) {
     ${tags
       .map((tag) => SitemapUrl({ url: `/tags/${tag?.slug?.current}` }))
       .join('\n')}
-      
+    ${newsletters
+      .map((newsletter) => SitemapUrl({ url: `/newsletters/${newsletter.id}` }))
+      .join('\n')}
   </urlset>
   `;
   return new Response(sitemap, {

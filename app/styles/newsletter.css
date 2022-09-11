@@ -1,0 +1,11 @@
+#convertkit-content a:hover {
+  text-decoration: underline;
+}
+
+#convertkit-content a {
+  color: #D53F8C; /* pink */
+}
+
+#convertkit-content p {
+  margin-bottom: 1rem;
+}
