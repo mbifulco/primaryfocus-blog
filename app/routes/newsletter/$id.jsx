@@ -47,7 +47,7 @@ export const loader = async ({ params, request }) => {
 
   const newsletter = await getNewsletter(id);
 
-  const canonical = `https://${config.siteUrl}/newsletter/${newsletter.id}`;
+  const canonical = `${config.siteUrl}/newsletter/${newsletter.id}`;
 
   return {
     canonical,
