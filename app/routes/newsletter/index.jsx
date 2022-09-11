@@ -38,7 +38,7 @@ const NewsletterListPage = () => {
       <Heading as="h1" fontSize={'lg'}>
         Read past newsletters
       </Heading>
-      <Stack spacing={[2, 4, 8, 16]}>
+      <Stack spacing={[4, 4, 8, 16]}>
         {newsletters
           .filter((newsletter) => !!newsletter.published_at)
           .sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
