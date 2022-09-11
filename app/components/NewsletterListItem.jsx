@@ -51,24 +51,9 @@ const NewsletterListItem = ({ newsletter }) => {
           fontWeight={600}
           fontSize={{ base: '2xl', sm: '2xl', lg: '4xl' }}
         >
-          <Text
-            as={'span'}
-            position={'relative'}
-            _after={{
-              content: "''",
-              width: 'full',
-              height: '30%',
-              position: 'absolute',
-              bottom: 1,
-              left: 0,
-              bg: 'red.400',
-              zIndex: -1,
-            }}
-          >
-            {newsletter.subject}
-          </Text>
+          <Text as={'span'}>{newsletter.subject}</Text>
           <br />
-          <Text as={'span'} color={'red.400'} fontSize="lg">
+          <Text as={'span'} color={'gray.600'} fontSize="md">
             {publishedAt.toLocaleDateString()}
           </Text>
         </Heading>
