@@ -79,7 +79,7 @@ const NewsletterListItem = ({ newsletter }) => {
             __html: broadcastTemplateParse({ template: newsletter.content }),
           }}
           maxH="6em"
-          overflow={'clip'}
+          overflow={'hidden'}
         />
       </Stack>
       <Flex
