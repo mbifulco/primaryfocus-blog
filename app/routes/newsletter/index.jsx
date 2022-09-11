@@ -4,29 +4,11 @@ import { Heading, Stack } from '@chakra-ui/react';
 import NewsletterListItem from '~/components/NewsletterListItem';
 import NewsletterCTA from '~/components/NewsletterCTA';
 
+import { getAllNewsletters } from '../../lib/util/convertKit.server';
+
 export const loader = async ({ params, request }) => {
-  const CONVERTKIT_API_SECRET = process.env.CONVERTKIT_API_SECRET;
-
-  const response = await fetch(
-    `https://api.convertkit.com/v3/broadcasts?api_secret=${CONVERTKIT_API_SECRET}`,
-  );
-  const data = await response.json();
-
-  const { broadcasts } = data;
-
-  const newsletters = await Promise.all(
-    broadcasts.map(async (broadcast) => {
-      const res = await fetch(
-        `https://api.convertkit.com/v3/broadcasts/${broadcast.id}?api_secret=${CONVERTKIT_API_SECRET}`,
-      );
-      const { broadcast: newsletter } = await res.json();
-
-      return newsletter;
-    }),
-  );
-
   return {
-    newsletters,
+    newsletters: await getAllNewsletters(),
   };
 };
 
@@ -39,12 +21,9 @@ const NewsletterListPage = () => {
         Read past newsletters
       </Heading>
       <Stack spacing={[4, 4, 8, 16]}>
-        {newsletters
-          .filter((newsletter) => !!newsletter.published_at)
-          .sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
-          .map((newsletter) => (
-            <NewsletterListItem newsletter={newsletter} key={newsletter.id} />
-          ))}
+        {newsletters.map((newsletter) => (
+          <NewsletterListItem newsletter={newsletter} key={newsletter.id} />
+        ))}
         <NewsletterCTA />
       </Stack>
     </>

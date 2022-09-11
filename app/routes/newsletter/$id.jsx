@@ -10,6 +10,7 @@ import NewsletterCTA from '../../components/NewsletterCTA';
 import config from '~/config';
 
 import newsletterStylesheetUrl from '~/styles/newsletter.css';
+import { getNewsletter } from '../../lib/util/convertKit.server';
 
 export const links = () => {
   return [{ rel: 'stylesheet', href: newsletterStylesheetUrl }];
@@ -44,12 +45,8 @@ export const loader = async ({ params, request }) => {
 
   const { id } = params;
 
-  const response = await fetch(
-    `https://api.convertkit.com/v3/broadcasts/${id}?api_secret=${CONVERTKIT_API_SECRET}`,
-  );
-  const data = await response.json();
+  const newsletter = await getNewsletter(id);
 
-  const newsletter = data.broadcast;
   const canonical = `https://${config.siteUrl}/newsletter/${newsletter.id}`;
 
   return {

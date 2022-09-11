@@ -49,7 +49,7 @@ const NewsletterListItem = ({ newsletter }) => {
         <Heading
           lineHeight={1}
           fontWeight={600}
-          fontSize={{ base: 'xl', sm: '2xl', lg: '4xl' }}
+          fontSize={{ base: '2xl', sm: '2xl', lg: '4xl' }}
         >
           <Text
             as={'span'}
