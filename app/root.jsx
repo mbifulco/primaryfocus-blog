@@ -96,6 +96,11 @@ export default function App() {
             <Outlet />
             <ScrollRestoration />
             <script src="https://cdn.politepop.com/polite-pop-v1.4.17/polite-pop.min.js" />
+            <script
+              async
+              data-uid="2926326bd9"
+              src="https://dogged-builder-4809.ck.page/2926326bd9/index.js"
+            ></script>
             <Scripts />
             {process.env.NODE_ENV === 'development' && <LiveReload />}
           </Layout>
