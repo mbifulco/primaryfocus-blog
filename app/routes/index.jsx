@@ -33,12 +33,6 @@ export default function Index() {
   let { posts } = useLoaderData();
   return (
     <>
-      <script
-        async
-        data-uid="2926326bd9"
-        src="https://dogged-builder-4809.ck.page/2926326bd9/index.js"
-      ></script>
-
       <Stack spacing={4}>
         <ArticleList articles={posts} />
       </Stack>
