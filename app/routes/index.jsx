@@ -32,10 +32,8 @@ export function meta() {
 export default function Index() {
   let { posts } = useLoaderData();
   return (
-    <>
-      <Stack spacing={4}>
-        <ArticleList articles={posts} />
-      </Stack>
-    </>
+    <Stack spacing={4}>
+      <ArticleList articles={posts} />
+    </Stack>
   );
 }
