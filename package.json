@@ -22,7 +22,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "fathom-client": "^3.5.0",
-    "framer-motion": "^6.3.5",
+    "framer-motion": "^8.5.5",
     "groq": "^2.29.3",
     "liquidjs": "^10.4.0",
     "picosanity": "^4.0.0",
