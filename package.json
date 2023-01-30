@@ -13,9 +13,9 @@
     "@chakra-ui/react": "^2.2.8",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@remix-run/react": "^1.6.8",
-    "@remix-run/serve": "^1.6.8",
-    "@remix-run/vercel": "^1.6.8",
+    "@remix-run/react": "^1.11.1",
+    "@remix-run/serve": "^1.11.1",
+    "@remix-run/vercel": "^1.11.1",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/groq-store": "^0.3.1",
     "@sanity/image-url": "^1.0.2",
@@ -30,10 +30,10 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
-    "remix": "^1.6.8"
+    "remix": "^1.11.1"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.6.8"
+    "@remix-run/dev": "^1.11.1"
   },
   "engines": {
     "node": ">=14"
