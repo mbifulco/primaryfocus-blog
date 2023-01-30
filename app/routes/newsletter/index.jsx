@@ -4,7 +4,7 @@ import { Heading, Stack } from '@chakra-ui/react';
 import NewsletterListItem from '~/components/NewsletterListItem';
 import NewsletterCTA from '~/components/NewsletterCTA';
 
-import { getAllNewsletters } from '../../lib/util/convertKit.server';
+import { getAllNewsletters } from '~/lib/util/convertKit.server';
 
 export const loader = async ({ params, request }) => {
   return {
