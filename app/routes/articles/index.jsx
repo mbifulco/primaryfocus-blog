@@ -36,6 +36,7 @@ export default function Index() {
   const [first, ...rest] = posts;
   return (
     <Stack spacing={4}>
+      <link rel="canonical" href="https://primaryfocus.tv/articles" />
       <FeaturedArticle article={first} />
       <Heading as="h2" paddingTop="10" size="md">
         More from Primary Focus

@@ -12,8 +12,22 @@ import {
   UnorderedList,
 } from '@chakra-ui/react';
 
+export const meta = ({ data, params }) => {
+  return {
+    title: 'Choosing the BEST school - a free email course from Primary Focus',
+    description:
+      'This free email course will help you choose the type of school that is right for your family, based on expert research from a 10 year teaching veteran.',
+    image:
+      'https://primaryfocus.app/images/courses/choosing-the-best-school/cover.png',
+  };
+};
+
 const ChoosingTheBestSchoolPage = () => (
   <>
+    <link
+      rel="canonical"
+      href="https://primaryfocus.tv/courses/choosing-the-best-school"
+    />
     <Heading size="sm" as="p" className="tagline">
       A{' '}
       <Text as="span" color={'pink.600'}>
@@ -104,10 +118,10 @@ const ChoosingTheBestSchoolPage = () => (
       spacing={4}
     >
       <Text>
-        Choosing the best school to enroll your child in is hard work. Whether
-        you’ve moved to a new city and need to choose a school or your four or
-        five year old is finally ready for kindergarten, picking out the right
-        school can feel like a full time job.
+        Choosing the best elementary school to enroll your child in is hard
+        work. Whether you’ve moved to a new city and need to choose a school or
+        your four or five year old is finally ready for kindergarten, picking
+        out the right school can feel like a full time job.
       </Text>
 
       <Text>That's why I created...</Text>

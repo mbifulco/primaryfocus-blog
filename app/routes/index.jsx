@@ -27,6 +27,10 @@ export async function loader() {
 
 export function meta() {
   return {
+    title:
+      'Primary Focus: Resources for parents and teachers of elementary school kids',
+    description:
+      'Courses, articles, and videos to help you make the most of your child’s elementary school years from a 10 year elementary school teaching veteran.',
     canonical: config.siteUrl,
   };
 }
@@ -35,6 +39,7 @@ export default function Index() {
   let { posts } = useLoaderData();
   return (
     <Stack spacing={4}>
+      <link rel="canonical" href="https://primaryfocus.tv" />
       <FeaturedCourse />
       <Spacer gap={6} />
       <ArticleList articles={posts} />
