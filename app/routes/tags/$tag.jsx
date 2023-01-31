@@ -5,7 +5,6 @@ import { Heading, Stack } from '@chakra-ui/react';
 
 import { getClient } from '~/lib/sanity/getClient';
 import ArticleList from '~/components/ArticleList';
-import NewsletterCTA from '~/components/NewsletterCTA';
 
 export async function loader({ params, request }) {
   const requestUrl = new URL(request?.url);
@@ -45,8 +44,7 @@ export async function loader({ params, request }) {
 }
 
 const PageForTag = () => {
-  const ld = useLoaderData();
-  const { data, preview, query, queryParams, tag } = useLoaderData();
+  const { data, tag } = useLoaderData();
 
   return (
     <Stack spacing={8}>
@@ -56,7 +54,6 @@ const PageForTag = () => {
           : `${data.length} Articles and videos tagged with ${tag}`}
       </Heading>
       <ArticleList articles={data} />
-      {/* <NewsletterCTA /> */}
     </Stack>
   );
 };

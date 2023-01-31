@@ -1,10 +1,9 @@
-import { Spacer, Stack } from '@chakra-ui/react';
+import { Heading, Stack } from '@chakra-ui/react';
 import { useLoaderData } from '@remix-run/react';
 import ArticleList from '~/components/ArticleList';
 import { getClient } from '~/lib/sanity/getClient';
 import config from '~/config';
-
-import FeaturedCourse from '~/components/FeaturedCourse';
+import FeaturedArticle from '~/components/FeaturedArticle';
 
 export async function loader() {
   const posts = await getClient().fetch(
@@ -27,22 +26,22 @@ export async function loader() {
 
 export function meta() {
   return {
-    title:
-      'Primary Focus: Resources for parents and teachers of elementary school kids',
-    description:
-      'Courses, articles, and videos to help you make the most of your child’s elementary school years from a 10 year elementary school teaching veteran.',
     canonical: config.siteUrl,
   };
 }
 
 export default function Index() {
   let { posts } = useLoaderData();
+
+  const [first, ...rest] = posts;
   return (
     <Stack spacing={4}>
-      <link rel="canonical" href="https://primaryfocus.tv" />
-      <FeaturedCourse />
-      <Spacer gap={6} />
-      <ArticleList articles={posts} />
+      <link rel="canonical" href="https://primaryfocus.tv/articles" />
+      <FeaturedArticle article={first} />
+      <Heading as="h2" paddingTop="10" size="md">
+        More from Primary Focus
+      </Heading>
+      <ArticleList articles={rest} />
     </Stack>
   );
 }

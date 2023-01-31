@@ -36,7 +36,14 @@ export const SitemapUrl = ({
 };
 
 export async function loader({ params }) {
-  const staticUrls = ['/', '/about', '/contact', '/articles', '/tags'];
+  const staticUrls = [
+    '/',
+    '/about',
+    '/contact',
+    '/articles',
+    '/tags',
+    '/courses/choosing-the-best-school',
+  ];
 
   const newsletters = await getAllNewsletters();
 

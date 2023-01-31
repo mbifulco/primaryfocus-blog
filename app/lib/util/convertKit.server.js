@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const CONVERTKIT_API_SECRET = process.env.CONVERTKIT_API_SECRET;
 
 export const getAllNewsletters = async () => {
@@ -28,7 +29,7 @@ export const getAllNewsletters = async () => {
 
   let nls = [];
   // iterate over the map we have of subject->newsletter, and push into a fresh array, which we'll return
-  for (subject in dedupedBySubject) {
+  for (let subject in dedupedBySubject) {
     nls.push(dedupedBySubject[subject]);
   }
 

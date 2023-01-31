@@ -4,15 +4,7 @@ import { useLoaderData } from '@remix-run/react';
 import imageUrlBuilder from '@sanity/image-url';
 import groq from 'groq';
 
-import {
-  Box,
-  Heading,
-  Image,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Heading, Image, Stack, Text } from '@chakra-ui/react';
 
 import { formatRelative } from 'date-fns';
 
@@ -23,7 +15,6 @@ import { getYouTubeThumbnailUrlForId } from '~/lib/util/getYouTubeThumbnailUrlFo
 import config from '~/config';
 
 import Preview from '~/components/Preview';
-import NewsletterCTA from '~/components/NewsletterCTA';
 import { TagList } from '~/components/TagList';
 import BlockContentWrapper from '../../components/BlockContentWrapper';
 
@@ -168,7 +159,7 @@ export default function Post() {
             <Text
               as="time"
               dateTime={post.publishedAt}
-              color={useColorModeValue('gray.600', 'gray.300')}
+              color={'gray.600'}
               fontSize={'sm'}
             >
               Published{' '}

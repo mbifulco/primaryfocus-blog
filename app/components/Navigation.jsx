@@ -3,7 +3,6 @@ import {
   Flex,
   Text,
   IconButton,
-  Button,
   Stack,
   Collapse,
   Icon,
@@ -251,6 +250,10 @@ const NAV_ITEMS = [
   {
     label: 'YouTube',
     href: 'https://youtube.com/c/primaryfocus',
+  },
+  {
+    label: 'Articles',
+    href: '/articles',
   },
   {
     label: 'About',

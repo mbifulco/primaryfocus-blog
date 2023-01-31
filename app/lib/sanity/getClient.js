@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // ./web/app/lib/sanity/getClient.js
 
 import PicoSanity from 'picosanity';

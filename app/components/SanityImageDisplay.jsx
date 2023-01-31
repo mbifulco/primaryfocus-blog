@@ -16,7 +16,7 @@ export const SanityImageDisplay = ({ image, ...rest }) => {
       const url = urlFor(image).url();
       setUrl(url);
     }
-  }, []);
+  }, [image]);
 
   return (
     <figure>

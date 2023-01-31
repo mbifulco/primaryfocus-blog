@@ -1,4 +1,4 @@
-import { Link, HStack, Tag, SimpleGrid, Box } from '@chakra-ui/react';
+import { Link, Tag, Box } from '@chakra-ui/react';
 
 export const TagList = ({ tags }) => {
   return (

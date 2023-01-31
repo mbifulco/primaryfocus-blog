@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+/* eslint-disable no-undef */
+import { useEffect } from 'react';
 import {
   Links,
   LiveReload,
@@ -55,7 +56,7 @@ export default function App() {
         modalBorder: `0px solid #BFD0FF`,
         modalRoundedCorners: `3px`,
       },
-      politePopHtml: `<p>I publish a bi-weekly newsletter to stay up to date on my new videos, worksheets, and teaching tips.</p><p>Want to check it out?</p><p><br></p>`,
+      politePopHtml: `<p>I publish a newsletter to stay up to date on education news and tips for working with your child.</p><p>Want to check it out?</p><p><br></p>`,
       politePopYesText: `Sure!`,
       exitIntentPopHtml: `<p>Interested in my newsletter for parents and teachers?</p>`,
       modalHtml: `<h1>Subscribe to my newsletter!</h1><p>Sign up for my newsletter to stay up to date on my new videos, worksheets, teaching tips, and more! </p><p>No spam, unsubscribe any time.</p>`,
