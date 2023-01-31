@@ -9,7 +9,7 @@ import {
   VisuallyHidden,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { FaYoutube, FaInstagram } from 'react-icons/fa';
 
 import config from '~/config';
 
@@ -56,7 +56,7 @@ const Footer = () => {
             <Link href={'https://youtube.com/c/primaryfocus'} isExternal>
               YouTube
             </Link>
-            <Link href={'/'}>Articles</Link>
+            <Link href={'/arctiles'}>Articles</Link>
             <Link href={'/tags'}>Categories</Link>
             <Link href={'/contact'}>Contact</Link>
           </Stack>

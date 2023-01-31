@@ -253,6 +253,10 @@ const NAV_ITEMS = [
     href: 'https://youtube.com/c/primaryfocus',
   },
   {
+    label: 'Articles',
+    href: '/articles',
+  },
+  {
     label: 'About',
     href: '/contact',
   },
