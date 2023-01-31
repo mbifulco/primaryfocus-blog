@@ -1,4 +1,4 @@
-# Welcome to Remix!
+# Welcome to Primary Focus
 
 - [Remix Docs](https://remix.run/docs)
 
