@@ -7,7 +7,7 @@
     "build": "remix build",
     "dev": "node -r dotenv/config node_modules/.bin/remix dev",
     "postinstall": "remix setup node",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern /api/_build/*"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",

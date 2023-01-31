@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+/* eslint-disable no-undef */
+import { useEffect } from 'react';
 import {
   Links,
   LiveReload,

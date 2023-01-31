@@ -2,16 +2,7 @@ import { useLoaderData } from '@remix-run/react';
 import { getClient } from '~/lib/sanity/getClient';
 
 import groq from 'groq';
-import {
-  Heading,
-  Image,
-  UnorderedList,
-  ListItem,
-  Stack,
-  Text,
-  useTheme,
-} from '@chakra-ui/react';
-import { Link } from '@remix-run/react';
+import { Heading, Image, Stack } from '@chakra-ui/react';
 
 import BlockContentWrapper from '~/components/BlockContentWrapper';
 import NewsletterCTA from '~/components/NewsletterCTA';
@@ -33,7 +24,6 @@ export const loader = async ({ params, request }) => {
 };
 
 const ContactPage = () => {
-  const theme = useTheme();
   const pictureSize = 250;
 
   const { bio } = useLoaderData();
@@ -46,6 +36,9 @@ const ContactPage = () => {
         alt="Miss Natalie headshot"
       />
       <Stack spacing={4}>
+        <Heading as="h1" size="xl">
+          About Primary Focus
+        </Heading>
         <BlockContentWrapper>{bio}</BlockContentWrapper>
       </Stack>
       <NewsletterCTA />

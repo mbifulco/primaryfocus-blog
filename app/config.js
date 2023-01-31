@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const siteUrl =
   typeof window !== 'undefined'
     ? window.ENV.SITE_URL || 'http://localhost:3000'

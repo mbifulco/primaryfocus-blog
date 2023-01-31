@@ -35,8 +35,7 @@ export const FeaturedCourse = () => (
           width="50%"
           position="absolute"
           height="50%"
-          ml="-20%"
-          mt="-20%"
+          mt="-10%"
         >
           <Box
             bgGradient={useColorModeValue(
@@ -52,9 +51,9 @@ export const FeaturedCourse = () => (
           src={coverImage}
           alt="What is the BEST school?"
           fallback={<Skeleton />}
-          maxH="450px"
+          maxH="500px"
           minW="300px"
-          objectFit="cover"
+          objectFit="contain"
           flex="1"
         />
       </Flex>
