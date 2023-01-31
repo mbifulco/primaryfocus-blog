@@ -25,7 +25,11 @@ const FeaturedArticle = ({ article }) => (
         marginLeft={{ base: '0', sm: '5%' }}
         marginTop="2%"
       >
-        <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+        <Link
+          href={`/articles/${article?.slug?.current}`}
+          textDecoration="none"
+          _hover={{ textDecoration: 'none' }}
+        >
           <ArticleCoverImage
             borderRadius="lg"
             {...article}
