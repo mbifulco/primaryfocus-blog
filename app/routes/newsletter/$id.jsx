@@ -41,8 +41,6 @@ export const meta = ({ data }) => {
 };
 
 export const loader = async ({ params, request }) => {
-  const CONVERTKIT_API_SECRET = process.env.CONVERTKIT_API_SECRET;
-
   const { id } = params;
 
   const newsletter = await getNewsletter(id);
