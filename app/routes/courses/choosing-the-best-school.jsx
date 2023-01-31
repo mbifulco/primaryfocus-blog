@@ -79,7 +79,10 @@ const ChoosingTheBestSchoolPage = () => (
             Montessori, IB, &amp; Unschooling.
           </Text>{' '}
         </Text>
-        <form action="https://app.convertkit.com/forms/4800374/subscriptions">
+        <form
+          action="https://app.convertkit.com/forms/4800374/subscriptions"
+          method="post"
+        >
           <Stack>
             <Input
               name="email_address"
