@@ -1,14 +1,12 @@
 import { Box, Heading, Link, Text, WrapItem } from '@chakra-ui/react';
-import { AuthorDisplay } from './AuthorDisplay';
-import { TagList } from './TagList';
 import { ArticleCoverImage } from './ArticleCoverImage';
 
 export const ArticleListItem = ({
-  author,
+  // author,
   excerpt,
   mainImage,
-  publishedAt,
-  tags,
+  // publishedAt,
+  // tags,
   title,
   youTubeId,
   slug,
@@ -50,7 +48,6 @@ export const ArticleListItem = ({
             {title}
           </Link>
         </Heading>
-        <TagList tags={tags} marginTop="2" />
         <Text as="p" fontSize="md" marginTop="2">
           {excerpt ? excerpt : null}
         </Text>
