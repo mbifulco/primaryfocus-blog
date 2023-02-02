@@ -36,7 +36,7 @@ const ChoosingTheBestSchoolPage = () => (
       email course from Primary Focus
     </Heading>
     <Heading size="2xl" fontWeight="bold" as="h1" pb={8}>
-      Choosing the BEST school
+      Choosing the BEST School
     </Heading>
 
     <Stack
@@ -63,12 +63,12 @@ const ChoosingTheBestSchoolPage = () => (
       />
       <Stack px={12} py={16} fontSize="lg">
         <Text as="h2" fontWeight="bold" fontSize="xl">
-          Choosing the right school sucks...
+          Trying to pick out the right school sucks
         </Text>
         <Text>
-          ...but it doesn't have to! In just 7 days, you'll decide{' '}
+          ...but it doesn't have to! In just 7 days, you'll be{' '}
           <Text as="span" fontWeight="bold">
-            which is the BEST school
+            choosing the BEST school
           </Text>{' '}
           for your child.
         </Text>
@@ -126,13 +126,19 @@ const ChoosingTheBestSchoolPage = () => (
         your four or five year old is finally ready for kindergarten, picking
         out the right school can feel like a full time job.
       </Text>
-
       <Text>That's why I created...</Text>
-
       <Text fontWeight={'bold'}>
         Choosing the BEST School: A FREE email course from Primary Focus
       </Text>
-
+      <iframe
+        width="720"
+        height="470"
+        src="https://www.youtube.com/embed/Mk9O0b9Wvu4"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
       <Text>
         No more stress or getting advice from your unqualified neighbor.
       </Text>
@@ -143,7 +149,6 @@ const ChoosingTheBestSchoolPage = () => (
           should I send my child to...
         </Text>
       </Text>
-
       <UnorderedList listStylePosition={'inside'} pl={6}>
         <ListItem>Public School</ListItem>
         <ListItem>Private School</ListItem>
@@ -156,14 +161,38 @@ const ChoosingTheBestSchoolPage = () => (
         <ListItem>Homeschool</ListItem>
         <ListItem>Unschool</ListItem>
       </UnorderedList>
-
       <Text>Learn the real questions to ask as your search for a school</Text>
-
       <Text>
         …and find out which programs may be available for free through public
         and charter schools.
       </Text>
-
+      <Heading as="h2" size="lg" fontWeight="bold" id="how-it-works">
+        <a href="#how-it-works">How does it work?</a>
+      </Heading>
+      <UnorderedList listStylePosition={'inside'} pl={6}>
+        <ListItem>
+          Sign up and check your email to confirm your subscription. If you
+          can't find it, check your spam folder.
+        </ListItem>
+        <ListItem>This email course is completely free!</ListItem>
+        <ListItem>
+          On Day 1 you'll receive 2 emails: An introduction and your first
+          school description on Leader in Me schools
+        </ListItem>
+        <ListItem>
+          On Days 2-7 you'll receive 1 email a day each highlighting a different
+          type of school
+        </ListItem>
+        <ListItem>
+          If you've got questions along the way simply respond to the emails or
+          email hello@primaryfocus.tv
+        </ListItem>
+        <ListItem>
+          If you've got lots of questions about the right school for your child,
+          schedule a 30 minute consultation with me
+        </ListItem>
+      </UnorderedList>
+      Let's get started! 😄
       <Link
         alignSelf={'center'}
         href="#enroll"
