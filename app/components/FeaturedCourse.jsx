@@ -47,15 +47,22 @@ export const FeaturedCourse = () => (
             height="100%"
           />
         </Box>
-        <Image
-          src={coverImage}
-          alt="What is the BEST school?"
-          fallback={<Skeleton />}
-          maxH="500px"
-          minW="300px"
-          objectFit="contain"
-          flex="1"
-        />
+        <Link
+          color={'pink.600'}
+          fontWeight="bold"
+          fontSize="lg"
+          href="/courses/choosing-the-best-school"
+        >
+          <Image
+            src={coverImage}
+            alt="What is the BEST school?"
+            fallback={<Skeleton />}
+            maxH="500px"
+            minW="300px"
+            objectFit="contain"
+            flex="1"
+          />
+        </Link>
       </Flex>
       <Box
         width={{
