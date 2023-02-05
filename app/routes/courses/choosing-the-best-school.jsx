@@ -189,7 +189,17 @@ const ChoosingTheBestSchoolPage = () => (
         </ListItem>
         <ListItem>
           If you've got lots of questions about the right school for your child,
-          schedule a 30 minute consultation with me
+          feel free to{' '}
+          <Link
+            href="https://calendly.com/primaryfocus/30min?month=2023-02"
+            rel="noopener noreferrer"
+            target="_blank"
+            color="pink.600"
+            fontWeight="bold"
+          >
+            schedule a 30 minute consultation with me
+          </Link>
+          .
         </ListItem>
       </UnorderedList>
       Let's get started! 😄
