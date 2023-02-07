@@ -14,15 +14,27 @@ export const ArticleCoverImage = ({ mainImage, youTubeId, title, ...rest }) => {
       <Image
         src={getYouTubeThumbnailUrlForId(youTubeId)}
         alt={`${title} thumbnail`}
+        objectFit="contain"
         clipPath={'inset(40px 0px)'}
         margin="-40px 0"
       />
     );
   }
 
+  const placeholder = <Box height={200} />;
+
   if (headerImageUrl) {
-    return <Image src={headerImageUrl} {...rest} fallback={Box} />;
+    return (
+      <Image
+        src={headerImageUrl}
+        fallback={placeholder}
+        height="180px"
+        width="100%"
+        objectFit={'cover'}
+        {...rest}
+      />
+    );
   }
 
-  return <Box height={200} />;
+  return placeholder;
 };
