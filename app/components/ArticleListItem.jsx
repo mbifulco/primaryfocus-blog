@@ -30,7 +30,6 @@ export const ArticleListItem = ({
               mainImage={mainImage}
               transform="scale(1.0)"
               alt="some text"
-              objectFit="contain"
               width="100%"
               transition="0.3s ease-in-out"
               _hover={{
