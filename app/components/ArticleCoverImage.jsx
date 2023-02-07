@@ -20,9 +20,11 @@ export const ArticleCoverImage = ({ mainImage, youTubeId, title, ...rest }) => {
     );
   }
 
+  const placeholder = <Box height={200} />;
+
   if (headerImageUrl) {
-    return <Image src={headerImageUrl} {...rest} fallback={Box} />;
+    return <Image src={headerImageUrl} fallback={placeholder} />;
   }
 
-  return <Box height={200} />;
+  return placeholder;
 };
