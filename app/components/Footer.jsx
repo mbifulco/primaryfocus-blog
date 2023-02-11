@@ -56,7 +56,7 @@ const Footer = () => {
             <Link href={'https://youtube.com/c/primaryfocus'} isExternal>
               YouTube
             </Link>
-            <Link href={'/arctiles'}>Articles</Link>
+            <Link href={'/articles'}>Articles</Link>
             <Link href={'/tags'}>Categories</Link>
             <Link href={'/contact'}>Contact</Link>
           </Stack>

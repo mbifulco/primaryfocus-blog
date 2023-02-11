@@ -46,7 +46,7 @@ const NewsletterListItem = ({ newsletter }) => {
         <Heading
           lineHeight={1}
           fontWeight={600}
-          fontSize={{ base: '2xl', sm: '2xl', lg: '4xl' }}
+          fontSize={{ base: '2xl', sm: '2xl', lg: '2xl' }}
         >
           <Text as={'span'}>{newsletter.subject}</Text>
           <br />
@@ -72,11 +72,11 @@ const NewsletterListItem = ({ newsletter }) => {
         w={'full'}
       >
         <Blob
-          w={'150%'}
-          h={'150%'}
+          w={'100%'}
+          h={'100%'}
           position={'absolute'}
-          top={'-20%'}
-          left={0}
+          top={'-15%'}
+          right={'-25%'}
           zIndex={-1}
           color={useColorModeValue('red.50', 'red.400')}
         />
