@@ -11,6 +11,7 @@ import config from '~/config';
 
 import newsletterStylesheetUrl from '~/styles/newsletter.css';
 import { getNewsletter } from '../../lib/util/convertKit.server';
+import { json } from 'react-router-dom';
 
 export const links = () => {
   return [{ rel: 'stylesheet', href: newsletterStylesheetUrl }];
@@ -47,10 +48,15 @@ export const loader = async ({ params, request }) => {
 
   const canonical = `${config.siteUrl}/newsletter/${newsletter.id}`;
 
-  return {
-    canonical,
-    newsletter,
-  };
+  return json(
+    {
+      canonical,
+      newsletter,
+    },
+    {
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+    },
+  );
 };
 
 const NewsletterPage = () => {
