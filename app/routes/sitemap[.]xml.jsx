@@ -72,7 +72,7 @@ export async function loader({ params }) {
       .map((tag) => SitemapUrl({ url: `/tags/${tag?.slug?.current}` }))
       .join('\n')}
     ${newsletters
-      .map((newsletter) => SitemapUrl({ url: `/newsletters/${newsletter.id}` }))
+      .map((newsletter) => SitemapUrl({ url: `/newsletter/${newsletter.id}` }))
       .join('\n')}
   </urlset>
   `;
